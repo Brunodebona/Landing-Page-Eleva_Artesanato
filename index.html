@@ -32,7 +32,6 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            /* Usando uma camada escura suave por cima da imagem para dar contraste ao texto */
             background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('WhatsApp Image 2026-06-24 at 19.21.54.jpeg');
             background-size: cover;
             background-position: center;
@@ -47,7 +46,7 @@
             align-items: center;
             min-height: 100vh;
             width: 100%;
-            padding: 40px 24px 120px 24px; /* Espaço inferior para não conflitar com o footer */
+            padding: 40px 24px 120px 24px;
             text-align: center;
             position: relative;
             z-index: 1;
@@ -94,6 +93,7 @@
             letter-spacing: 0.2rem;
             backdrop-filter: blur(4px);
             -webkit-backdrop-filter: blur(4px);
+            touch-action: manipulation; /* Melhora o tempo de resposta do clique no celular */
         }
 
         .botao-galeria:hover {
@@ -144,6 +144,7 @@
             color: #f1e9d2;
             transition: transform 0.3s;
             z-index: 11;
+            padding: 10px; /* Facilita o toque no celular */
         }
 
         .galeria-close:hover {
@@ -177,6 +178,7 @@
             overflow: hidden;
             cursor: pointer;
             transition: border-color 0.3s;
+            touch-action: manipulation;
         }
 
         .item-galeria img {
@@ -184,9 +186,9 @@
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), filter 0.3s ease;
+            pointer-events: none; /* Evita que o navegador do celular tente "salvar a imagem" ao invés de abrir o lightbox */
         }
 
-        /* Zoom e iluminação suave ao passar o mouse */
         .item-galeria:hover img {
             transform: scale(1.08);
             filter: brightness(1.1);
@@ -240,6 +242,7 @@
             color: #f1e9d2;
             cursor: pointer;
             line-height: 1;
+            padding: 10px;
         }
 
         /* Footer Principal */
@@ -265,14 +268,12 @@
             letter-spacing: 0.1rem;
         }
 
-        /* Contêiner que agrupa os botões de redes sociais */
         .footer-redes {
             display: flex;
             flex-direction: row;
             gap: 16px;
         }
 
-        /* Estilo Unificado dos Links de Redes */
         .rede-social-link {
             text-decoration: none;
             color: #f1e9d2;
@@ -283,9 +284,9 @@
             border-radius: 20px;
             background-color: transparent;
             transition: all 0.3s ease;
+            touch-action: manipulation;
         }
 
-        /* Ícones Internos (Whats e Insta) */
         .rede-social-icon {
             width: 18px;
             height: 18px;
@@ -294,19 +295,16 @@
             transition: fill 0.3s ease;
         }
 
-        /* Efeito Hover Luxuoso Unificado */
         .rede-social-link:hover {
-            background-color: #f1e9d2; /* Preenche o fundo */
-            color: #0d0d0d;            /* Texto fica escuro */
+            background-color: #f1e9d2;
+            color: #0d0d0d;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
 
-        /* Força os ícones SVG a ficarem escuros no momento do hover */
         .rede-social-link:hover .rede-social-icon {
             fill: #0d0d0d;
         }
 
-        /* Adaptações de Responsividade para Telas de Celular */
         @media (max-width: 600px) {
             h1.logo {
                 letter-spacing: 0.15rem;
@@ -342,7 +340,6 @@
             }
         }
 
-        /* Keyframes de Animação de Entrada */
         @keyframes fadeInLogo {
             0% { opacity: 0; transform: translateY(-10px); }
             100% { opacity: 1; transform: translateY(0); }
@@ -365,32 +362,31 @@
             Do silêncio da madeira à alma do metal, forjamos mais que instrumentos. 
             Criamos elos de tempo. Cachimbos de texturas ancestrais e tambores de ecos profundos. 
             Para quem sabe que a verdadeira elegância reside na autenticidade rústica 
-            e no toque da precisão luxuosa. Deixe a tradição se elevar em suas manos.
+            e no toque da precisão luxuosa. Deixe a tradição se elevar em suas mãos.
         </p>
 
-        <button class="botao-galeria" onclick="abrirGaleria()">Revele a Essência</button>
+        <button class="botao-galeria" id="btnGaleria">Revele a Essência</button>
     </div>
 
     <div class="galeria-overlay" id="galeriaOverlay">
         <div class="galeria-content">
-            <span class="galeria-close" onclick="fecharGaleria()">&times;</span>
+            <span class="galeria-close" id="btnFecharGaleria">&times;</span>
             <h2 class="galeria-titulo">A Arte em Close-Up</h2>
             
             <div class="galeria-grid">
-                <div class="item-galeria"><img src="assets/foto1.jpeg" alt="Cachimbo Rústico"></div>
-                <div class="item-galeria"><img src="assets/foto2.jpeg" alt="Tambor Artesanal"></div>
-                <div class="item-galeria"><img src="assets/foto3.jpeg" alt="Cachimbo com detalhes Rusticos"></div>
-                <div class="item-galeria"><img src="assets/foto4.jpeg" alt="Processo de Produção"></div>
-                <div class="item-galeria"><img src="assets/foto5.jpeg" alt="Cachimbo de Madeira"></div>
-                <div class="item-galeria"><img src="assets/foto6.jpeg" alt="Cachimbo de madeira"></div>
-                <div class="item-galeria"><img src="assets/foto7.jpeg" alt="Instrumento Customizado"></div>
-                <div class="item-galeria"><img src="assets/foto8.jpeg" alt="Cachimbo Customizado"></div>
+                <!-- Certifique-se de que a extensão condiz perfeitamente com o seu arquivo (ex: .jpeg, .jpg) -->
+                <div class="item-galeria"><img src="WhatsApp Image 2026-06-24 at 19.21.54.jpeg" alt="Cachimbo Rústico Exemplo 1"></div>
+                <div class="item-galeria"><img src="WhatsApp Image 2026-06-24 at 19.21.54.jpeg" alt="Tambor Artesanal Exemplo 2"></div>
+                <div class="item-galeria"><img src="WhatsApp Image 2026-06-24 at 19.21.54.jpeg" alt="Detalhes Rústicos de Luxo"></div>
+                <div class="item-galeria"><img src="WhatsApp Image 2026-06-24 at 19.21.54.jpeg" alt="Processo de Produção"></div>
+                <div class="item-galeria"><img src="WhatsApp Image 2026-06-24 at 19.21.54.jpeg" alt="Textura de Madeira Envelhecida"></div>
+                <div class="item-galeria"><img src="WhatsApp Image 2026-06-24 at 19.21.54.jpeg" alt="Instrumento Customizado"></div>
             </div>
         </div>
     </div>
 
-    <div class="lightbox-overlay" id="lightboxOverlay" onclick="fecharLightbox()">
-        <span class="lightbox-close" onclick="fecharLightbox()">&times;</span>
+    <div class="lightbox-overlay" id="lightboxOverlay">
+        <span class="lightbox-close" id="btnFecharLightbox">&times;</span>
         <img class="lightbox-imagem" id="lightboxImagem" src="" alt="Foto Ampliada">
     </div>
 
@@ -415,51 +411,70 @@
     </footer>
 
     <script>
-        // Abre o overlay da galeria principal
+        // Elementos mapeados via ID para evitar erros de escopo nos navegadores mobile
+        const galeriaOverlay = document.getElementById('galeriaOverlay');
+        const lightboxOverlay = document.getElementById('lightboxOverlay');
+        const lightboxImagem = document.getElementById('lightboxImagem');
+        const btnGaleria = document.getElementById('btnGaleria');
+        const btnFecharGaleria = document.getElementById('btnFecharGaleria');
+        const btnFecharLightbox = document.getElementById('btnFecharLightbox');
+
+        // Funções estruturais de abrir e fechar com suporte total a Mobile
         function abrirGaleria() {
-            document.getElementById('galeriaOverlay').classList.add('active');
+            galeriaOverlay.classList.add('active');
         }
 
-        // Fecha o overlay da galeria principal
         function fecharGaleria() {
-            document.getElementById('galeriaOverlay').classList.remove('active');
+            galeriaOverlay.classList.remove('active');
         }
 
-        // Configuração dinâmica dos cliques para ver as fotos em tamanho maior (Lightbox)
-        function configurarCliquesGaleria() {
-            const imagensDaGaleria = document.querySelectorAll('.item-galeria img');
-            const lightbox = document.getElementById('lightboxOverlay');
-            const lightboxImg = document.getElementById('lightboxImagem');
-
-            imagensDaGaleria.forEach(img => {
-                img.addEventListener('click', function(event) {
-                    event.stopPropagation(); // Impede que o clique na foto feche a galeria de fundo por acidente
-                    lightboxImg.src = this.src; // Transfere a imagem clicada para a tag do lightbox
-                    lightboxImg.alt = this.alt;
-                    lightbox.classList.add('active'); // Torna a foto grande visível
-                });
-            });
-        }
-
-        // Fecha o visualizador de fotos ampliadas
         function fecharLightbox() {
-            document.getElementById('lightboxOverlay').classList.remove('active');
-            setTimeout(() => {
-                document.getElementById('lightboxImagem').src = ""; // Reseta o link após a transição para evitar "pulos" visuais
-            }, 300);
+            lightboxOverlay.classList.remove('active');
+            setTimeout(() => { lightboxImagem.src = ""; }, 300);
         }
 
-        // Inicializador de eventos após o carregamento estrutural da página
-        document.addEventListener("DOMContentLoaded", function() {
-            configurarCliquesGaleria();
+        // EventListeners robustos compatíveis com Samsung Internet e Chrome Mobile
+        if(btnGaleria) {
+            btnGaleria.addEventListener('click', abrirGaleria);
+        }
+        
+        if(btnFecharGaleria) {
+            btnFecharGaleria.addEventListener('click', fecharGaleria);
+        }
 
-            // Fecha a galeria se o cliente clicar no espaço escuro fora das imagens
-            const galeriaOverlay = document.getElementById('galeriaOverlay');
-            galeriaOverlay.addEventListener('click', function(event) {
-                if (event.target == galeriaOverlay) {
-                    fecharGaleria();
-                }
-            });
+        if(btnFecharLightbox) {
+            btnFecharLightbox.addEventListener('click', fecharLightbox);
+        }
+
+        // Fecha a galeria ao clicar na área escura (Desktop e Mobile)
+        galeriaOverlay.addEventListener('click', function(e) {
+            if (e.target === galeriaOverlay) fecharGaleria();
+        });
+
+        // Fecha o lightbox ao clicar na área escura 
+        lightboxOverlay.addEventListener('click', function(e) {
+            if (e.target === lightboxOverlay) fecharLightbox();
+        });
+
+        // Configuração dos itens individuais da galeria
+        const itensGaleria = document.querySelectorAll('.item-galeria');
+        itensGaleria.forEach(item => {
+            // Buscamos a imagem de dentro da div de forma segura
+            const imgDentro = item.querySelector('img');
+            
+            if (imgDentro) {
+                // Evento duplo (click normal e toque rápido de tela mobile)
+                const gerenciarAberturaFoto = function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    lightboxImagem.src = imgDentro.src;
+                    lightboxImagem.alt = imgDentro.alt;
+                    lightboxOverlay.classList.add('active');
+                };
+
+                item.addEventListener('click', gerenciarAberturaFoto);
+            }
         });
     </script>
 </body>
