@@ -18,14 +18,15 @@
             padding: 0;
             width: 100%;
             height: 100%;
-            overflow: hidden; /* Mantém a experiência de "página única" na tela principal */
+            overflow-x: hidden;
+            overflow-y: hidden; /* Controlado dinamicamente via Media Query para celulares pequenos */
             font-family: 'Cormorant Garamond', serif;
             color: #f1e9d2;
             background-color: #0d0d0d;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Fundo Imersivo (A foto do cachimbo do cliente) */
+        /* Fundo Imersivo */
         .fundo-imersivo {
             position: fixed;
             top: 0;
@@ -46,7 +47,7 @@
             align-items: center;
             min-height: 100vh;
             width: 100%;
-            padding: 40px 24px 120px 24px;
+            padding: 40px 24px 140px 24px; /* Aumentado o respiro inferior */
             text-align: center;
             position: relative;
             z-index: 1;
@@ -93,7 +94,7 @@
             letter-spacing: 0.2rem;
             backdrop-filter: blur(4px);
             -webkit-backdrop-filter: blur(4px);
-            touch-action: manipulation; /* Melhora o tempo de resposta do clique no celular */
+            touch-action: manipulation;
         }
 
         .botao-galeria:hover {
@@ -144,7 +145,7 @@
             color: #f1e9d2;
             transition: transform 0.3s;
             z-index: 11;
-            padding: 10px; /* Facilita o toque no celular */
+            padding: 10px;
         }
 
         .galeria-close:hover {
@@ -167,7 +168,7 @@
             gap: 24px;
         }
 
-        /* Itens da Galeria com Efeito Hover de Zoom e Brilho */
+        /* Itens da Galeria */
         .item-galeria {
             background: #141414;
             aspect-ratio: 4 / 3;
@@ -186,7 +187,7 @@
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), filter 0.3s ease;
-            pointer-events: none; /* Evita que o navegador do celular tente "salvar a imagem" ao invés de abrir o lightbox */
+            pointer-events: none;
         }
 
         .item-galeria:hover img {
@@ -198,7 +199,7 @@
             border-color: rgba(241, 233, 210, 0.5);
         }
 
-        /* Estrutura do Lightbox (Foto Expandida ao Clicar) */
+        /* Estrutura do Lightbox */
         .lightbox-overlay {
             position: fixed;
             top: 0;
@@ -252,7 +253,7 @@
             left: 0;
             width: 100%;
             padding: 24px;
-            background: linear-gradient(180deg, transparent 0%, rgba(10, 10, 10, 0.9) 50%);
+            background: linear-gradient(180deg, transparent 0%, rgba(10, 10, 10, 0.95) 50%);
             display: flex;
             flex-direction: row;
             justify-content: space-between;
@@ -305,41 +306,64 @@
             fill: #0d0d0d;
         }
 
+        /* Adaptações de Responsividade e Correção para Telas de Celular Compactas */
         @media (max-width: 600px) {
+            body, html {
+                overflow-y: auto; /* Permite rolar a tela se faltar espaço no celular */
+            }
+
             h1.logo {
                 letter-spacing: 0.15rem;
+                margin-bottom: 1rem;
             }
 
             .conteudo-principal {
                 justify-content: flex-start;
-                padding-top: 25vh;
+                padding-top: 12vh; /* Reduzido para dar espaço ao conteúdo */
+                padding-bottom: 100px; /* Evita que o botão entre embaixo do footer */
+                min-height: auto;
             }
 
             .texto-abertura {
                 text-align: justify;
                 hyphens: auto;
+                font-size: 1.05rem;
+                margin-bottom: 2rem;
             }
 
+            /* CORREÇÃO DO FOOTER: Mais compacto e sem esmagar o botão */
             footer {
+                position: relative; /* Muda para fluxo relativo no mobile para não cobrir nada fixo */
                 flex-direction: column;
-                gap: 16px;
-                padding: 20px;
-                background: rgba(10, 10, 10, 0.95);
+                gap: 12px;
+                padding: 16px 20px; /* Reduzido o preenchimento */
+                background: rgba(10, 10, 10, 0.98);
+            }
+
+            .footer-logo {
+                font-size: 0.85rem;
             }
 
             .footer-redes {
                 width: 100%;
                 justify-content: center;
-                gap: 12px;
+                gap: 8px;
+            }
+
+            .rede-social-link {
+                padding: 6px 12px; /* Botões levemente menores no celular */
+                font-size: 0.85rem;
             }
 
             .botao-galeria {
                 width: 100%;
-                max-width: 300px;
-                padding: 14px 24px;
+                max-width: 280px;
+                padding: 14px 20px;
+                margin-bottom: 20px;
             }
         }
 
+        /* Keyframes de Animação de Entrada */
         @keyframes fadeInLogo {
             0% { opacity: 0; transform: translateY(-10px); }
             100% { opacity: 1; transform: translateY(0); }
@@ -374,13 +398,14 @@
             <h2 class="galeria-titulo">A Arte em Close-Up</h2>
             
             <div class="galeria-grid">
-                <!-- Certifique-se de que a extensão condiz perfeitamente com o seu arquivo (ex: .jpeg, .jpg) -->
-                <div class="item-galeria"><img src="WhatsApp Image 2026-06-24 at 19.21.54.jpeg" alt="Cachimbo Rústico Exemplo 1"></div>
-                <div class="item-galeria"><img src="WhatsApp Image 2026-06-24 at 19.21.54.jpeg" alt="Tambor Artesanal Exemplo 2"></div>
-                <div class="item-galeria"><img src="WhatsApp Image 2026-06-24 at 19.21.54.jpeg" alt="Detalhes Rústicos de Luxo"></div>
-                <div class="item-galeria"><img src="WhatsApp Image 2026-06-24 at 19.21.54.jpeg" alt="Processo de Produção"></div>
-                <div class="item-galeria"><img src="WhatsApp Image 2026-06-24 at 19.21.54.jpeg" alt="Textura de Madeira Envelhecida"></div>
-                <div class="item-galeria"><img src="WhatsApp Image 2026-06-24 at 19.21.54.jpeg" alt="Instrumento Customizado"></div>
+                <div class="item-galeria"><img src="assets/foto1.jpeg" alt="Cachimbo Rústico"></div>
+                <div class="item-galeria"><img src="assets/foto2.jpeg" alt="Tambor Artesanal"></div>
+                <div class="item-galeria"><img src="assets/foto3.jpeg" alt="Cachimbo com detalhes Rusticos"></div>
+                <div class="item-galeria"><img src="assets/foto4.jpeg" alt="Processo de Produção"></div>
+                <div class="item-galeria"><img src="assets/foto5.jpeg" alt="Cachimbo de Madeira"></div>
+                <div class="item-galeria"><img src="assets/foto6.jpeg" alt="Cachimbo de madeira"></div>
+                <div class="item-galeria"><img src="assets/foto7.jpeg" alt="Instrumento Customizado"></div>
+                <div class="item-galeria"><img src="assets/foto8.jpeg" alt="Cachimbo Customizado"></div>
             </div>
         </div>
     </div>
@@ -411,7 +436,6 @@
     </footer>
 
     <script>
-        // Elementos mapeados via ID para evitar erros de escopo nos navegadores mobile
         const galeriaOverlay = document.getElementById('galeriaOverlay');
         const lightboxOverlay = document.getElementById('lightboxOverlay');
         const lightboxImagem = document.getElementById('lightboxImagem');
@@ -419,7 +443,6 @@
         const btnFecharGaleria = document.getElementById('btnFecharGaleria');
         const btnFecharLightbox = document.getElementById('btnFecharLightbox');
 
-        // Funções estruturais de abrir e fechar com suporte total a Mobile
         function abrirGaleria() {
             galeriaOverlay.classList.add('active');
         }
@@ -433,46 +456,29 @@
             setTimeout(() => { lightboxImagem.src = ""; }, 300);
         }
 
-        // EventListeners robustos compatíveis com Samsung Internet e Chrome Mobile
-        if(btnGaleria) {
-            btnGaleria.addEventListener('click', abrirGaleria);
-        }
-        
-        if(btnFecharGaleria) {
-            btnFecharGaleria.addEventListener('click', fecharGaleria);
-        }
+        if(btnGaleria) btnGaleria.addEventListener('click', abrirGaleria);
+        if(btnFecharGaleria) btnFecharGaleria.addEventListener('click', fecharGaleria);
+        if(btnFecharLightbox) btnFecharLightbox.addEventListener('click', fecharLightbox);
 
-        if(btnFecharLightbox) {
-            btnFecharLightbox.addEventListener('click', fecharLightbox);
-        }
-
-        // Fecha a galeria ao clicar na área escura (Desktop e Mobile)
         galeriaOverlay.addEventListener('click', function(e) {
             if (e.target === galeriaOverlay) fecharGaleria();
         });
 
-        // Fecha o lightbox ao clicar na área escura 
         lightboxOverlay.addEventListener('click', function(e) {
             if (e.target === lightboxOverlay) fecharLightbox();
         });
 
-        // Configuração dos itens individuais da galeria
         const itensGaleria = document.querySelectorAll('.item-galeria');
         itensGaleria.forEach(item => {
-            // Buscamos a imagem de dentro da div de forma segura
             const imgDentro = item.querySelector('img');
-            
             if (imgDentro) {
-                // Evento duplo (click normal e toque rápido de tela mobile)
                 const gerenciarAberturaFoto = function(e) {
                     e.preventDefault();
                     e.stopPropagation();
-                    
                     lightboxImagem.src = imgDentro.src;
                     lightboxImagem.alt = imgDentro.alt;
                     lightboxOverlay.classList.add('active');
                 };
-
                 item.addEventListener('click', gerenciarAberturaFoto);
             }
         });
